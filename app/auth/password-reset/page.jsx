@@ -7,10 +7,9 @@ import AppInput from '@/app/components/organisms/AppInput'
 import { SignInAuth } from '@/app/hooks/Auth'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { LuLockKeyhole } from "react-icons/lu";
 
 
-function accountSetup() {
+function AccountSetup() {
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -31,8 +30,8 @@ function accountSetup() {
                     <div className=" flex max-w-sm mx-auto w-full">
                         <form onSubmit={submit} className='w-full space-y-8'>
                             <div className="space-y-4">
-                                <AppInput name="new-password" icon={<LuLockKeyhole />} type="password" required label="Enter New Password" />
-                                <AppInput name="confirm-password" icon={<LuLockKeyhole />} type="password" required label="Confirm New Password" />
+                                <AppInput name="new-password" type="password" required label="Enter New Password" />
+                                <AppInput name="confirm-password" type="password" required label="Confirm New Password" />
                             </div>
                             <button className="text-center w-full cursor-pointer disabled:bg-opacity-35 shadow-md bg-green text-white rounded-lg py-3">Continue</button>
                         </form>
@@ -43,4 +42,4 @@ function accountSetup() {
     )
 }
 
-export default accountSetup
+export default AccountSetup

@@ -10,7 +10,7 @@ import LineChart from './components/organisms/LineChart';
 import { IoMdArrowDropdown } from "react-icons/io";
 
 
-function page() {
+function Page() {
 
   const quickMenu = [
     {
@@ -73,4 +73,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

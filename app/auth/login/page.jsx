@@ -8,10 +8,9 @@ import { SignInAuth } from '@/app/hooks/Auth'
 import { useDispatch } from 'react-redux'
 import { CiMail } from "react-icons/ci";
 import { useRouter } from 'next/navigation'
-import { LuLockKeyhole } from "react-icons/lu";
 
 
-function accountSetup() {
+function AccountSetup() {
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -34,7 +33,7 @@ function accountSetup() {
                         <form onSubmit={submit} className='w-full space-y-4'>
                             <div className="space-y-4">
                                 <AppInput icon={<CiMail />} name="email" required label="Enter Email" />
-                                <AppInput name="password" icon={<LuLockKeyhole />} type={"password"} required label="Enter Password" />
+                                <AppInput name="password"  type={"password"} required label="Enter Password" />
                             </div>
                             <div className='flex flex-row items-center justify-between'>
                                 <div className="flex-grow">
@@ -51,4 +50,4 @@ function accountSetup() {
     )
 }
 
-export default accountSetup
+export default AccountSetup

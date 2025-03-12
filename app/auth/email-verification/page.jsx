@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import OtpInput from 'react-otp-input';
 import { resendOTP, verifyOTP } from '@/app/services/authService'
 
-function accountSetup() {
+function AccountSetup() {
     const dispatch = useDispatch()
     const [proccessing, setProccessing] = useState(false)
     const [errMsg, setErrMsg] = useState(false)
@@ -112,4 +112,4 @@ function accountSetup() {
     )
 }
 
-export default accountSetup
+export default AccountSetup

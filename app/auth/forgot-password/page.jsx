@@ -10,7 +10,7 @@ import { CiMail } from "react-icons/ci";
 import { useRouter } from 'next/navigation'
 import serialize from '@/app/hooks/Serialize'
 
-function accountSetup() {
+function AccountSetup() {
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -44,4 +44,4 @@ function accountSetup() {
     )
 }
 
-export default accountSetup
+export default AccountSetup
