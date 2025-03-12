@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
 import logo from "@assets/image/logo.png"
-import loader from "@assets/image/loader.png"
 
 function Perloader() {
   return (
