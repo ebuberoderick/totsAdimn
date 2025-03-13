@@ -2,10 +2,6 @@
 import React, { useState } from 'react'
 import AppLayout from './components/layouts/appLayout'
 import DashBoardQuickMenu from './components/organisms/DashBoardQuickMenu'
-import { PiBookOpenText } from "react-icons/pi";
-import { TbClipboardText } from "react-icons/tb";
-import { HiOutlineLightBulb } from "react-icons/hi";
-import { CiTrophy } from "react-icons/ci";
 import LineChart from './components/organisms/LineChart';
 import { IoMdArrowDropdown } from "react-icons/io";
 

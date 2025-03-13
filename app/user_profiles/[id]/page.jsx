@@ -1,5 +1,6 @@
 "use client"
 import AppLayout from '@/app/components/layouts/appLayout'
+import PostCard from '@/app/components/organisms/PostCard'
 import PreferenceChip from '@/app/components/organisms/PreferenceChip'
 import Image from 'next/image'
 import React, { useState } from 'react'
@@ -9,13 +10,12 @@ function Page() {
 
     return (
         <AppLayout active={"User Profiles"} title={"User Profiles"}>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="space-y-4">
-                    <div className="w-44 space-y-3">
+                    <div className="w-44 mx-auto md:mx-0 space-y-3">
                         <div>
                             <div className="w-44 h-44 rounded-full">
                                 <img src={`https://randomuser.me/api/portraits/women/2.jpg`} alt={`user.name`} className="w-full h-full rounded-full" />
-                                {/* <Image src={``} alt='' /> */}
                             </div>
                         </div>
                         <div className="text-center leading-3">
@@ -42,10 +42,14 @@ function Page() {
                     <div className=""></div>
                 </div>
                 <div className="">
-                    
+                    {
+                        ["", "", "", "", "", ""].map((data, i) => (
+                            <PostCard key={i} />
+                        ))
+                    }
                 </div>
-                <div className="">
-                    <div className="md:col-span-2 h-full rounded-lg lg:col-span-1 border border-gray-100">
+                <div className="lg:col-span-2 sticky bottom-0 xl:col-span-1">
+                    <div className="max-h-screen h-full w-full rounded-lg border border-gray-100">
                         <div className="text-gray-300 flex items-center justify-center h-full text-sm text-center px-12">No comment opened yet, click on any comment icon to display here</div>
                     </div>
                 </div>
