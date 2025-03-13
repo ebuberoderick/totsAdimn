@@ -2,14 +2,26 @@
 import AppLayout from '@/app/components/layouts/appLayout'
 import PostCard from '@/app/components/organisms/PostCard'
 import PreferenceChip from '@/app/components/organisms/PreferenceChip'
-import Image from 'next/image'
+import { TfiAngleLeft } from "react-icons/tfi";
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 function Page() {
     const [list, setList] = useState([{ label: "All", value: "all" }, { label: "Active", value: "active" }, { label: "Inactive", value: "inactive" }, { label: "All", value: "all" }, { label: "Active", value: "active" }, { label: "Inactive", value: "inactive" }, { label: "All", value: "all" }, { label: "Active", value: "active" }, { label: "Inactive", value: "inactive" }])
+    const router = useRouter()
+
 
     return (
         <AppLayout active={"User Profiles"} title={"User Profiles"}>
+            <div className="flex items-center justify-between">
+                <div className="">
+                    <div onClick={() => router.back()} className="w-8 h-8 flex items-center justify-center cursor-pointer rounded-md border border-gray-200"><TfiAngleLeft /></div>
+                </div>
+                <div className="flex gap-4 items-center">
+                    <div className="px-6 py-2 rounded-md cursor-pointer bg-gray-50 hover:bg-gray-100">Personal Data</div>
+                    <div className="px-6 py-2 rounded-md cursor-pointer bg-blue/80 hover:bg-blue text-white">Suspend Account</div>
+                </div>
+            </div>
             <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="space-y-4">
                     <div className="w-44 mx-auto md:mx-0 space-y-3">
