@@ -30,9 +30,9 @@ function SideNav({ user, active }) {
           <div>Manage Users</div>
           <div>
             <AppLink active={active} icon={<RiGraduationCapLine />} text={"User Profiles"} />
-            <AppLink active={active} icon={<RiGraduationCapLine />} text={"Role Management"} />
-            <AppLink active={active} icon={<LuFileQuestion />} text={"Activity Logs"} />
-            <AppLink active={active} icon={<LuFileQuestion />} text={"Account Suspension/Activation"} />
+            <AppLink active={active} icon={<RiGraduationCapLine />} text={"Staff Management"} />
+            {/* <AppLink active={active} icon={<LuFileQuestion />} text={"Activity Logs"} /> */}
+            {/* <AppLink active={active} icon={<LuFileQuestion />} text={"Account Suspension/Activation"} /> */}
           </div>
         </div>
         <div className="">
@@ -43,28 +43,28 @@ function SideNav({ user, active }) {
             <AppLink active={active} icon={<LuFileQuestion />} text={"Report Content Review"} />
           </div>
         </div>
-        <div className="">
+        {/* <div className="">
           <div>Analytics and Reports</div>
           <div>
             <AppLink active={active} icon={<RiGraduationCapLine />} text={"User Engagement Metrics"} />
             <AppLink active={active} icon={<LuFileQuestion />} text={"Content Metrics"} />
             <AppLink active={active} icon={<LuFileQuestion />} text={"Forum Usage Data"} />
           </div>
-        </div>
+        </div> */}
         <div className="">
           <div>System Settings</div>
           <div>
             <AppLink active={active} icon={<LuFileQuestion />} text={"Platform Configuration"} />
           </div>
         </div>
-        <div className="">
+        {/* <div className="">
           <div>Feedback and Support</div>
           <div>
             <AppLink active={active} icon={<RiGraduationCapLine />} text={"User Feedback Management"} />
             <AppLink active={active} icon={<LuFileQuestion />} text={"Support Ticket System"} />
             <AppLink active={active} icon={<LuFileQuestion />} text={"FAQ Updates"} />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
