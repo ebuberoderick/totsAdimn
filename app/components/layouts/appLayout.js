@@ -7,6 +7,7 @@ import SideNav from "../molecules/SideNav";
 import { TfiAngleDown } from "react-icons/tfi";
 import { FaRegBell } from "react-icons/fa";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
+import Image from "next/image";
 
 function AppLayout({ children, title, active, subtext }) {
   const user = useSelector((state) => state.User);
@@ -27,6 +28,7 @@ function AppLayout({ children, title, active, subtext }) {
     } else {
       setGreetings('Evening')
     }
+    
   }, [])
 
   function Header() {
@@ -56,9 +58,11 @@ function AppLayout({ children, title, active, subtext }) {
             <div className="flex items-center justify-center gap-3">
               <div className="text-xl"><FaRegBell /></div>
               <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-full bg-gray-50"></div>
+                <div className="w-9 h-9 rounded-full bg-gray-50">
+                  <Image src={user?.value?.user?.avatar} width={100} height={100} alt="" className="w-full h-full object-cover rounded-full" />
+                </div>
                 <div>
-                  <div className="font-bold text-sm">Ebube</div>
+                  <div className="font-bold text-xs">{user?.value?.user?.fname} {user?.value?.user?.lname}</div>
                   <div className="text-xs">Admin</div>
                 </div>
                 <TfiAngleDown />

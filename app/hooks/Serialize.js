@@ -29,7 +29,7 @@ const serialize = (form) => {
       .reduce(
         (acc, [key, value]) => ({
           ...acc,
-          [key]: isNaN(value) ? value : Number(value),
+          [key]: isNaN(value) ? value : value,
         }),
         {}
       );

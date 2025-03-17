@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from "@assets/image/logo.png"
 import Link from 'next/link'
 import AppInput from '@/app/components/organisms/AppInput'
@@ -8,16 +8,30 @@ import { SignInAuth } from '@/app/hooks/Auth'
 import { useDispatch } from 'react-redux'
 import { CiMail } from "react-icons/ci";
 import { useRouter } from 'next/navigation'
+import serialize from '@/app/hooks/Serialize'
+import { Applogin } from '@/app/services/authService'
 
 
 function AccountSetup() {
     const dispatch = useDispatch()
+    const [proccessing, setProccessing] = useState(false)
+    const [errMsg, setErrMsg] = useState(false)
     const router = useRouter()
 
     const submit = async (e) => {
         e.preventDefault()
-        SignInAuth({ data: { bearer_token: "bearer_token" }, user: { fullname: "hello" } }, dispatch)
-        router.push("/")
+        const payload = serialize(e.target)
+        setProccessing(true)
+        const { status, data } = await Applogin(payload).catch(err => console.log(err))
+        setProccessing(false)
+        if (status) {
+            setErrMsg('')
+            SignInAuth(data, dispatch)
+            router.push("/")
+            window !== "undefined" && window.location.reload()
+        } else {
+            setErrMsg(data.message)
+        }
     }
 
     return (
@@ -26,6 +40,7 @@ function AccountSetup() {
                 <div className='max-w-lg gap-4 flex flex-col p-4 mx-auto'>
                     <Image src={logo} className='pointer-events-none' />
                     <div className="">
+                        <div className="text-danger text-sm">{errMsg}</div>
                         <div className='font-bold text-2xl'>Welcome Back!</div>
                         <div className="text-sm">Log in to your account</div>
                     </div>
@@ -33,7 +48,7 @@ function AccountSetup() {
                         <form onSubmit={submit} className='w-full space-y-4'>
                             <div className="space-y-4">
                                 <AppInput icon={<CiMail />} name="email" required label="Enter Email" />
-                                <AppInput name="password"  type={"password"} required label="Enter Password" />
+                                <AppInput name="password" type={"password"} required label="Enter Password" />
                             </div>
                             <div className='flex flex-row items-center justify-between'>
                                 <div className="flex-grow">

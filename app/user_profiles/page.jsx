@@ -1,32 +1,32 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import AppLayout from '../components/layouts/appLayout'
 import AppTable from '../components/organisms/AppTable'
+import { fetchUsers } from '../services/authService';
+import AppPagination from '../components/organisms/AppPagination';
 
 function page() {
+  const [users, setUsers] = useState(null);
 
-  const users = [
-    {
-      id: 76504,
-      name: "Emily Selman",
-      email: "jerome@gmail.com",
-      status: "Active",
-      lastLogin: "2024-12-09 10:00:00",
-      avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Example avatar
-    },
-    {
-      id: 76504,
-      name: "Cameron Williamson",
-      email: "alvia@email.com",
-      status: "Active",
-      lastLogin: "2024-12-09 10:00:00",
-      avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-    },
-  ];
 
+  const fetchUsersFN = async () => {
+    const { data, status } = await fetchUsers()
+    if (status) {
+      setUsers(data.data)
+    }
+  }
+
+  useEffect(() => {
+    fetchUsersFN()
+  }, [])
 
   return (
     <AppLayout active={"User Profiles"} title={"User Profiles"}>
-      <AppTable  users={users} />
+      <AppTable users={users?.data} />
+      <div className="md:flex flex-wrap gap-8 md:items-center md:justify-between">
+        <div className="p-3 text-sm text-gray-400">Showing {users?.from} to {users?.to} of {users?.total} entries</div>
+        <AppPagination totalRecords={users} newData={(data) => setUsers(data)} />
+      </div>
     </AppLayout>
   )
 }
