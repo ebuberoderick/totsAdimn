@@ -5,25 +5,26 @@ import { BsTrash3 } from "react-icons/bs";
 import { moment } from '@/app/hooks/useMoment';
 import EmblaCarousel from './EmblaCarousel';
 
-function PostCard() {
+function PostCard({ data }) {
 
     const OPTIONS = { loop: true }
     const SLIDE_COUNT = 5
     const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
+    console.log(data);
 
     return (
         <div className='space-y-3 mb-3'>
             <div className='flex'>
                 <div className='flex-grow flex gap-2 items-center'>
                     <div>
-                        <img src={`https://randomuser.me/api/portraits/women/2.jpg`} alt={`user.name`} className="w-12 h-12 rounded-full" />
+                        <img src={data?.user?.avatar} alt={`user.name`} className="w-12 h-12 rounded-full" />
                     </div>
                     <div>
-                        <div className='text-sm'>Ebube Roderick</div>
-                        <div className='text-xs flex items-center gap-3'>
-                            <div>@bube</div>
-                            <div className='text-gray-400'>{moment("2024-12-09 10:00:00")}</div>
+                        <div className='text-sm'>{data?.user?.fname} {data?.user?.lname}</div>
+                        <div className='text-xs flex items-center gap-2'>
+                            <div>@{data?.user?.username}</div>
+                            <div className='text-gray-400'>{moment(data?.created_at)}</div>
                         </div>
                     </div>
                 </div>

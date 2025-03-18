@@ -12,7 +12,6 @@ function Page() {
     const [list, setList] = useState([])
     const router = useRouter()
 
-    console.log(userID);
 
     const fetchuser = async () => {
         const { status, data } = await fetchAUser({ id: userID })
@@ -42,7 +41,7 @@ function Page() {
                     <div className="w-44 mx-auto md:mx-0 space-y-3">
                         <div>
                             <div className="w-44 h-44 rounded-full">
-                                <img src={`https://randomuser.me/api/portraits/women/2.jpg`} alt={`user.name`} className="w-full h-full rounded-full" />
+                                <img src={list[0]?.avatar} alt={`user.name`} className="w-full h-full rounded-full" />
                             </div>
                         </div>
                         <div className="text-center leading-3">
@@ -69,7 +68,7 @@ function Page() {
                 <div className="">
                     {
                         list[2]?.data.map((data, i) => (
-                            <PostCard key={i} />
+                            <PostCard data={data} key={i} />
                         ))
                     }
                 </div>
