@@ -34,16 +34,14 @@ function PostCard({ data }) {
             </div>
             <div className='space-y-3'>
                 <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-                <div className='text-sm'>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur incidunt distinctio itaque aliquam delectus ratione expedita animi aperiam enim, aspernatur quas nobis repellat! Unde nesciunt adipisci molestiae reiciendis non officia!
-                </div>
+                <div className='text-sm'>{data?.text}</div>
             </div>
             <div className='flex items-center gap-4'>
                 <div className='flex items-center gap-1'>
-                    <FiHeart /> 13
+                    <FiHeart /> {data?.likes_count}
                 </div>
                 <div className='flex items-center gap-1'>
-                    <FaRegComments className='text-lg' /> 4
+                    <FaRegComments className='text-lg' /> {data?.comments_count}
                 </div>
             </div>
         </div>
