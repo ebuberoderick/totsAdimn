@@ -3,12 +3,27 @@ import AppLayout from '@/app/components/layouts/appLayout'
 import PostCard from '@/app/components/organisms/PostCard'
 import PreferenceChip from '@/app/components/organisms/PreferenceChip'
 import { TfiAngleLeft } from "react-icons/tfi";
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react'
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { fetchAUser } from '@/app/services/authService';
 
 function Page() {
-    const [list, setList] = useState([{ label: "All", value: "all" }, { label: "Active", value: "active" }, { label: "Inactive", value: "inactive" }, { label: "All", value: "all" }, { label: "Active", value: "active" }, { label: "Inactive", value: "inactive" }, { label: "All", value: "all" }, { label: "Active", value: "active" }, { label: "Inactive", value: "inactive" }])
+    const { userID } = useParams()
+    const [list, setList] = useState([])
     const router = useRouter()
+
+    console.log(userID);
+
+    const fetchuser = async () => {
+        const { status, data } = await fetchAUser({ id: userID })
+        if (status) {
+            setList(data.data)
+        }
+    }
+
+    useEffect(() => {
+        fetchuser()
+    }, [])
 
 
     return (
@@ -31,22 +46,20 @@ function Page() {
                             </div>
                         </div>
                         <div className="text-center leading-3">
-                            <div className="font-bold">Ebube Onyemzoro</div>
-                            <div className="text-gray-400 text-sm">@bube</div>
+                            <div className="font-bold">{list[0]?.fname} {list[0]?.lname}</div>
+                            <div className="text-gray-400 text-sm">@{list[0]?.username}</div>
                         </div>
                     </div>
                     <div className="space-y-3">
-                        <div className="font-bold">Preference</div>
-                        <div className="text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tempore delectus quae sunt maiores! Odio quaerat illo expedita consequuntur unde placeat! Fugiat ducimus itaque, veniam libero perferendis velit odit ut?
-                        </div>
+                        <div className="font-bold">Description</div>
+                        <div className="text-sm">{list[0]?.description}</div>
                     </div>
                     <div className="space-y-3">
                         <div className="font-bold">Preference</div>
                         <div className="flex flex-wrap gap-2">
                             {
-                                list?.map((data, i) => (
-                                    <PreferenceChip compare={list} key={i} value={data.value} text={data.label} />
+                                list[1]?.map((data, i) => (
+                                    <PreferenceChip compare={[]} key={i} value={data.name} text={data.name} />
                                 ))
                             }
                         </div>
@@ -55,7 +68,7 @@ function Page() {
                 </div>
                 <div className="">
                     {
-                        ["", "", "", "", "", ""].map((data, i) => (
+                        list[2]?.data.map((data, i) => (
                             <PostCard key={i} />
                         ))
                     }

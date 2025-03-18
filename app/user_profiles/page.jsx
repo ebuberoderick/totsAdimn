@@ -5,7 +5,7 @@ import AppTable from '../components/organisms/AppTable'
 import { fetchUsers } from '../services/authService';
 import AppPagination from '../components/organisms/AppPagination';
 
-function page() {
+function Page() {
   const [users, setUsers] = useState(null);
 
 
@@ -31,4 +31,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
