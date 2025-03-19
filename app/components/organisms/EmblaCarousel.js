@@ -31,7 +31,7 @@ const EmblaCarousel = (props) => {
           {slides.map((index) => (
             <div className="embla__slide bg-gray-50 overflow-hidden" key={index}>
               <div className="embla__slide__number">
-                <img src={`https://randomuser.me/api/portraits/women/2.jpg`} alt={`user.name`} className="w-full h-full" />
+                <img src={index} alt={`user.name`} className="w-full h-full" />
               </div>
             </div>
           ))}

@@ -18,7 +18,7 @@ export const userLogs = () => apiWithAuth.post("/admin/user/fetch_user_logs").th
 
 export const fetchPosts = () => apiWithAuth.post("/admin/post/fetch").then(getApiResponse).catch(getErrorResponse);
 export const fetchApost = () => apiWithAuth.post("/admin/post/fetch_a_post").then(getApiResponse).catch(getErrorResponse);
-export const deletePost = () => apiWithAuth.post("/admin/post/delete").then(getApiResponse).catch(getErrorResponse);
+export const deletePost = (formData) => apiWithAuth.post("/admin/post/delete", formData).then(getApiResponse).catch(getErrorResponse);
 
 
 export const fetchGroup = () => apiWithAuth.post("/admin/group/fetch").then(getApiResponse).catch(getErrorResponse);

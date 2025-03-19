@@ -4,17 +4,19 @@ import { FaRegComments } from "react-icons/fa";
 import { BsTrash3 } from "react-icons/bs";
 import { moment } from '@/app/hooks/useMoment';
 import EmblaCarousel from './EmblaCarousel';
+import { deletePost } from '@/app/services/authService';
 
-function PostCard({ data }) {
+function PostCard({ data, reload }) {
 
     const OPTIONS = { loop: true }
-    const SLIDE_COUNT = 5
-    const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
-    console.log(data);
 
+    const deletePostFN = async () => {
+        const { status, data: res } = await deletePost({ post_id: data?.id }).catch(err => console.log(err))
+        reload()
+    }
     return (
-        <div className='space-y-3 mb-3'>
+        <div className={`space-y-3 mb-3 ${data.status === "archived" && "hidden"}`}>
             <div className='flex'>
                 <div className='flex-grow flex gap-2 items-center'>
                     <div>
@@ -29,11 +31,13 @@ function PostCard({ data }) {
                     </div>
                 </div>
                 <div>
-                    <div className='w-7 h-7 cursor-pointer rounded-md bg-danger/10 text-danger text-sm flex items-center justify-center'><BsTrash3 /></div>
+                    <div onClick={deletePostFN} className='w-7 h-7 cursor-pointer rounded-md bg-danger/10 text-danger text-sm flex items-center justify-center'><BsTrash3 /></div>
                 </div>
             </div>
             <div className='space-y-3'>
-                <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+                {
+                    data.image !== null && <EmblaCarousel slides={data.image} options={OPTIONS} />
+                }
                 <div className='text-sm'>{data?.text}</div>
             </div>
             <div className='flex items-center gap-4'>
