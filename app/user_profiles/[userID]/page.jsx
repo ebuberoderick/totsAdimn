@@ -5,26 +5,51 @@ import PreferenceChip from '@/app/components/organisms/PreferenceChip'
 import { TfiAngleLeft } from "react-icons/tfi";
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { fetchAUser } from '@/app/services/authService';
+import { BsPostcardHeart } from "react-icons/bs";
+import { fetchAUser, suspendUser, unsuspendUser } from '@/app/services/authService';
 
 function Page() {
     const { userID } = useParams()
     const [list, setList] = useState([])
     const router = useRouter()
 
-    const stickyElemRef = useRef(null);  
-    const [isSticky, setIsSticky] = useState(false);  
+    const stickyElemRef = useRef(null);
+    const [isSticky, setIsSticky] = useState(false);
+
+
+    const fetchuser = async () => {
+        const { status, data } = await fetchAUser({ id: userID })
+        if (status) {
+            setList(data.data)
+        }
+    }
+
+
+    const suspendUserAccount = async () => {
+        const { status } = await suspendUser({ id: userID })
+        if (status) {
+            fetchuser()
+        }
+    }
+
+    const unsuspendUserAccount = async () => {
+        const { status } = await unsuspendUser({ id: userID })
+        if (status) {
+            fetchuser()
+        }
+    }
+
 
     useEffect(() => {
-        const stickyElem = stickyElemRef.current; 
-
+        fetchuser()
+        const stickyElem = stickyElemRef.current;
         const currStickyPos = stickyElem.getBoundingClientRect().top + window.pageYOffset;
 
         const handleScroll = () => {
             if (window.pageYOffset > currStickyPos) {
-                setIsSticky(true); 
+                setIsSticky(true);
             } else {
-                setIsSticky(false); 
+                setIsSticky(false);
             }
         };
         window.addEventListener('scroll', handleScroll);
@@ -36,19 +61,6 @@ function Page() {
 
 
 
-    const fetchuser = async () => {
-        const { status, data } = await fetchAUser({ id: userID })
-        if (status) {
-            setList(data.data)
-        }
-    }
-
-    useEffect(() => {
-        fetchuser()
-    }, [])
-
-
-
     return (
         <AppLayout active={"User Profiles"} title={"User Profiles"}>
             <div className="sm:flex space-y-4 sm:space-y-0 items-center justify-between">
@@ -56,8 +68,13 @@ function Page() {
                     <div onClick={() => router.back()} className="w-8 h-8 flex items-center justify-center cursor-pointer rounded-md border border-gray-200"><TfiAngleLeft /></div>
                 </div>
                 <div className="flex gap-4 items-center">
-                    <div className="px-6 py-2 text-xs sm:text-sm rounded-md cursor-pointer bg-gray-50 hover:bg-gray-100">Personal Data</div>
-                    <div  className="px-6 py-2 text-xs sm:text-sm rounded-md cursor-pointer bg-blue/80 hover:bg-blue text-white">Suspend Account</div>
+                    {/* <div className="px-6 py-2 text-xs sm:text-sm rounded-md cursor-pointer bg-gray-50 hover:bg-gray-100">Personal Data</div> */}
+                    {
+                        list[0]?.status === "active" ?
+                            <div onClick={suspendUserAccount} className="px-6 py-2 text-xs sm:text-sm rounded-md cursor-pointer bg-danger/80 hover:bg-danger text-white">Suspend Account</div> :
+                            <div onClick={unsuspendUserAccount} className="px-6 py-2 text-xs sm:text-sm rounded-md cursor-pointer bg-blue/80 hover:bg-blue text-white">Unsuspend Account</div>
+                    }
+
                 </div>
             </div>
             <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -87,7 +104,6 @@ function Page() {
                             }
                         </div>
                     </div>
-                    <div className=""></div>
                 </div>
                 <div className="relative">
                     <div
@@ -125,11 +141,17 @@ function Page() {
                                     }
                                 </div>
                             </div>
-                            <div className=""></div>
                         </div>
                     </div>
                 </div>
                 <div className="">
+                    {
+                        list[2]?.data.length === 0 &&
+                        <div className="flex gap-4 text-gray-300 items-center flex-col justify-center h-full">
+                            <div className="text-5xl"><BsPostcardHeart /></div>
+                            <div className="text-xl text-center px-12">This user has no post</div>
+                        </div>
+                    }
                     {
                         list[2]?.data.map((data, i) => (
                             <PostCard data={data} reload={fetchuser} key={i} />

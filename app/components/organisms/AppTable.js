@@ -9,7 +9,7 @@ const AppTable = ({ users = [] }) => {
         <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-200">
                 <thead>
-                    <tr className="bg-gray-100 border-b">
+                    <tr className="bg-gray-100 text-sm border-b">
                         <th className="p-3 text-left">User ID</th>
                         <th className="p-3 text-left">Name</th>
                         <th className="p-3 text-left">Email Address</th>
@@ -30,7 +30,9 @@ const AppTable = ({ users = [] }) => {
                                 </div>
                             </td>
                             <td className="p-3 text-sm">{user.email}</td>
-                            <td className="p-3 text-green-600 text-sm">{user.status}</td>
+                            <td className="p-3 text-green-600 text-sm">
+                                <div className={`${user.status === "active" ? "text-blue bg-blue/10" : "text-danger bg-danger/10"} inline-block py-1 px-4 text-xs rounded-lg`}>{user.status}</div>
+                            </td>
                             <td className="p-3 text-sm"><div className="w-44">{moment(user.updated_at)} ago</div></td>
                             <td className="p-3">
                                 <Link href={`/user_profiles/${user.id}`}>
