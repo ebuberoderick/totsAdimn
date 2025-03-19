@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['api.viloxapp.com', "https://","img.freepik.com"],
+        domains: ['api.viloxapp.com', "https://","img.freepik.com","tots.literesults.net"],
         remotePatterns: [
             {
                 protocol: 'https',
