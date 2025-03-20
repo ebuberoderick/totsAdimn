@@ -24,8 +24,8 @@ export const deletePost = (formData) => apiWithAuth.post("/admin/post/delete", f
 export const fetchGroup = () => apiWithAuth.post("/admin/group/fetch").then(getApiResponse).catch(getErrorResponse);
 export const createGroup = () => apiWithAuth.post("/admin/group/create").then(getApiResponse).catch(getErrorResponse);
 export const fetchAGroup = () => apiWithAuth.post("/admin/group/fetch_a_group").then(getApiResponse).catch(getErrorResponse);
-export const createPerference = (formData) => apiWithAuth.post("/admin/group/create_perference",formData).then(getApiResponse).catch(getErrorResponse);
-export const deleteGroup = () => apiWithAuth.post("/admin/group/delete").then(getApiResponse).catch(getErrorResponse);
+export const createPerference = (formData) => apiWithAuth.post("/admin/group/create_perference", formData).then(getApiResponse).catch(getErrorResponse);
+export const deleteGroup = (formdata) => apiWithAuth.post("/admin/group/delete", formdata).then(getApiResponse).catch(getErrorResponse);
 
 
 export const fetchReportReason = () => apiWithAuth.post("/admin/report/fetch_reports").then(getApiResponse).catch(getErrorResponse);

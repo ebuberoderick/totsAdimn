@@ -1,3 +1,4 @@
+import { deleteGroup } from '@/app/services/authService';
 import Image from 'next/image'
 import React from 'react'
 import { BsTrash3 } from "react-icons/bs";
@@ -5,9 +6,11 @@ import { BsTrash3 } from "react-icons/bs";
 function GroupChip({ group }) {
 
     const deletePostFN = async () => {
+        const { status, data } = await deleteGroup({ group_id: group?.id })
+        console.log(data);
 
     }
-    
+
     return (
         <div className="flex items-center gap-2">
             <div className='flex items-center flex-grow gap-2'>

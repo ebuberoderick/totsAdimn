@@ -22,6 +22,7 @@ function Page() {
 
   return (
     <AppLayout active={"User Profiles"} title={"User Profiles"}>
+      <div className=""></div>
       <AppTable users={users?.data} />
       <div className="md:flex flex-wrap gap-8 md:items-center md:justify-between">
         <div className="p-3 text-sm text-gray-400">Showing {users?.from} to {users?.to} of {users?.total} entries</div>
