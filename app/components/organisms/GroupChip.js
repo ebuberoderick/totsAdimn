@@ -7,7 +7,7 @@ function GroupChip({ group }) {
     const deletePostFN = async () => {
 
     }
-
+    
     return (
         <div className="flex items-center gap-2">
             <div className='flex items-center flex-grow gap-2'>

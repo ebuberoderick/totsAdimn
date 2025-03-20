@@ -46,7 +46,7 @@ export const getApiResponse = (data) => {
 };
 
 export const getErrorResponse = (error) => {
-  if (error.response.status === 401) {
+  if (error?.response?.status === 401) {
     Cookies.remove('TOTSADMIN')
     window !== "undefined" && window.location.reload()
   }

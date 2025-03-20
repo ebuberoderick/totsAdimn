@@ -56,7 +56,7 @@ function AccountSetup() {
                                 </div>
                                 <Link href="forgot-password">Forgot password?</Link>
                             </div>
-                            <button className="text-center w-full cursor-pointer disabled:bg-opacity-35 shadow-md bg-blue text-white rounded-lg py-3">Login</button>
+                            <button className={`text-center w-full cursor-pointer disabled:bg-opacity-35 shadow-md ${proccessing ? "bg-gray-300" : "bg-blue"}  text-white rounded-lg py-3`}> {proccessing ? "Proccessing..." : "Login"} </button>
                         </form>
                     </div>
                 </div>

@@ -12,8 +12,10 @@ function PostCard({ data, reload }) {
 
 
     const deletePostFN = async () => {
-        const { status, data: res } = await deletePost({ post_id: data?.id }).catch(err => console.log(err))
-        reload()
+        const { status } = await deletePost({ post_id: data?.id }).catch(err => console.log(err))
+        if (status) {
+            reload()
+        }
     }
     return (
         <div className={`space-y-3 mb-3 ${data.status === "archived" && "hidden"}`}>
