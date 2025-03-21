@@ -30,4 +30,4 @@ export const deleteGroup = (formdata) => apiWithAuth.post("/admin/group/delete",
 
 export const fetchReports = () => apiWithAuth.post("/admin/report/fetch_reports").then(getApiResponse).catch(getErrorResponse);
 export const resolvePostReport = (formData) => apiWithAuth.post("/admin/report/resolve_post_report", formData).then(getApiResponse).catch(getErrorResponse);
-export const resolveGroupReport = () => apiWithAuth.post("/admin/report/resolve_group_report").then(getApiResponse).catch(getErrorResponse);
+export const resolveGroupReport = (formdata) => apiWithAuth.post("/admin/report/resolve_group_report", formdata).then(getApiResponse).catch(getErrorResponse);

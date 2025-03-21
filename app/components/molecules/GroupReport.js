@@ -1,13 +1,13 @@
 import React from "react";
-import PostTableChip from "../organisms/PostTableChip";
+import GroupTableChip from "../organisms/GroupTableChip";
 
-const PostReport = ({ posts = [] }) => {
+const GroupReport = ({ gropus = [] }) => {
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full text-sm bg-white border border-gray-200">
                 <thead>
                     <tr className="bg-gray-100 border-b">
-                        <th className="p-3 text-left w-80">Post</th>
+                        <th className="p-3 text-left w-80">Group</th>
                         <th className="p-3 text-left w-72">Reported By</th>
                         <th className="p-3 text-left w-72">Reason for Report</th>
                         <th className="p-3 text-left">Status</th>
@@ -15,8 +15,8 @@ const PostReport = ({ posts = [] }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.map((post, index) => (
-                        <PostTableChip key={index} data={post} />
+                    {gropus.map((group, index) => (
+                        <GroupTableChip key={index} data={group} />
                     ))}
                 </tbody>
             </table>
@@ -24,4 +24,4 @@ const PostReport = ({ posts = [] }) => {
     );
 };
 
-export default PostReport;
+export default GroupReport;
