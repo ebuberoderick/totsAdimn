@@ -7,9 +7,6 @@ function GroupTableChip({ data }) {
     const [group, setGroup] = useState(data)
     const [proccessing, setProccessing] = useState(false)
 
-    console.log(group);
-    
-
 
     const resolve = async () => {
         setProccessing(true)

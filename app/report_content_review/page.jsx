@@ -5,6 +5,7 @@ import PostReport from '../components/molecules/PostReport'
 import { fetchReports } from '../services/authService'
 import AppPagination from '../components/organisms/AppPagination'
 import GroupReport from '../components/molecules/GroupReport'
+import UserReport from '../components/molecules/UserReport'
 
 function Page() {
 
@@ -58,7 +59,7 @@ function Page() {
             {
                 active === "user" &&
                 <div className="space-y-4">
-                    {/* <PostReport posts={userReport?.data} /> */}
+                    <UserReport users={userReport?.data} />
                     <div className="md:flex flex-wrap gap-8 md:items-center md:justify-between">
                         <div className="p-3 text-sm text-gray-400">Showing {userReport?.from} to {userReport?.to} of {userReport?.total} entries</div>
                         <AppPagination totalRecords={userReport} newData={(data) => setUserReport(data?.account_reports)} />
