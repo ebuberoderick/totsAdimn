@@ -28,6 +28,6 @@ export const createPerference = (formData) => apiWithAuth.post("/admin/group/cre
 export const deleteGroup = (formdata) => apiWithAuth.post("/admin/group/delete", formdata).then(getApiResponse).catch(getErrorResponse);
 
 
-export const fetchReportReason = () => apiWithAuth.post("/admin/report/fetch_reports").then(getApiResponse).catch(getErrorResponse);
-export const resolvePostReport = () => apiWithAuth.post("/admin/report/resolve_post_report").then(getApiResponse).catch(getErrorResponse);
+export const fetchReports = () => apiWithAuth.post("/admin/report/fetch_reports").then(getApiResponse).catch(getErrorResponse);
+export const resolvePostReport = (formData) => apiWithAuth.post("/admin/report/resolve_post_report", formData).then(getApiResponse).catch(getErrorResponse);
 export const resolveGroupReport = () => apiWithAuth.post("/admin/report/resolve_group_report").then(getApiResponse).catch(getErrorResponse);
