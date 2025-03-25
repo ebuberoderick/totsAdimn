@@ -179,7 +179,7 @@ function Page() {
                             <div className="space-y-3 bg-gray-100 p-2 rounded-lg max-h-96 overflow-y-auto">
                                 {
                                     group?.groups?.map((group) => (
-                                        <GroupChip key={group.id} group={group} />
+                                        <GroupChip key={group.id} reload={() => fetchGroupsFN()} group={group} />
                                     ))
                                 }
                             </div>

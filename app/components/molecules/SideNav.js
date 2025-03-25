@@ -51,12 +51,12 @@ function SideNav({ user, active }) {
             <AppLink active={active} icon={<LuFileQuestion />} text={"Forum Usage Data"} />
           </div>
         </div> */}
-        <div className="">
+        {/* <div className="">
           <div>System Settings</div>
           <div>
             <AppLink active={active} icon={<LuFileQuestion />} text={"Platform Configuration"} />
           </div>
-        </div>
+        </div> */}
         {/* <div className="">
           <div>Feedback and Support</div>
           <div>

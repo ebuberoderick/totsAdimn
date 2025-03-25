@@ -3,12 +3,11 @@ import Image from 'next/image'
 import React from 'react'
 import { BsTrash3 } from "react-icons/bs";
 
-function GroupChip({ group }) {
+function GroupChip({ group, reload }) {
 
-    const deletePostFN = async () => {
-        const { status, data } = await deleteGroup({ group_id: group?.id })
-        console.log(data);
-
+    const deleteGroupFN = async () => {
+        const { status, data } = await deleteGroup({ group_id: group?.id, post_id: group?.id })
+        reload()
     }
 
     return (
@@ -27,7 +26,7 @@ function GroupChip({ group }) {
                 </div>
             </div>
             <div>
-                <div onClick={deletePostFN} className='w-7 h-7 cursor-pointer rounded-md bg-danger/10 text-danger text-sm flex items-center justify-center'><BsTrash3 /></div>
+                <div onClick={deleteGroupFN} className='w-7 h-7 cursor-pointer rounded-md bg-danger/10 text-danger text-sm flex items-center justify-center'><BsTrash3 /></div>
             </div>
         </div>
     )
