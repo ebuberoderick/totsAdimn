@@ -4,7 +4,7 @@ import AppLayout from '../components/layouts/appLayout'
 import PostCard from '../components/organisms/PostCard'
 import { fetchPosts } from '../services/authService'
 import AppPagination from '../components/organisms/AppPagination'
-import AppPostTable from '../components/organisms/AppPostTable'
+import AppPostTable from '../components/molecules/AppPostTable'
 
 function Page() {
 
@@ -24,14 +24,14 @@ function Page() {
 
     return (
         <AppLayout active={"Posts"} title={"Posts"}>
-            <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            {/* <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {
                     list?.data?.map((data, i) => (
                         <PostCard data={data} reload={fetchPostsFN} key={i} />
                     ))
                 }
-            </div>
-            {/* <AppPostTable posts={list?.data} /> */}
+            </div> */}
+            <AppPostTable posts={list?.data} />
             <div className="md:flex flex-wrap gap-8 md:items-center md:justify-between">
                 <div className="p-3 text-sm text-gray-400">Showing {list?.from} to {list?.to} of {list?.total} entries</div>
                 <AppPagination totalRecords={list} newData={(data) => setList(data)} />
